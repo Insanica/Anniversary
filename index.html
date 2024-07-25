@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Cinta untuk Pasangan</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #ff4b6b;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .heart {
+            font-size: 100px;
+            color: #ff4b6b;
+            animation: heartbeat 1s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .message {
+            font-size: 1.2rem;
+            color: #333;
+            margin-top: 1rem;
+        }
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff4b6b;
+            opacity: 0.5;
+            animation: float 10s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    <div class="container">
+        <h1>Cinta Kita Selamanya</h1>
+        <div class="heart">❤️</div>
+        <p class="message" id="message"></p>
+    </div>
+
+    <script>
+        function getRandomLoveMessage() {
+            const messages = [
+                "Happy Anniversary Sayang",
+                "Makasih yah dah mau jadi pasangan aku",
+                "Makasih juga dah bikin dunia aku penuh kebahagiaan di saat sama kamu",
+                "Dah banyak hal yang kita lalui bersama,mau seneng ataupun sedih",
+                "Seneng banget aku bisa kenal sama kamu bahagia banget banget aku pokoknya!!",
+                "Kamu tetep sama aku yah sayang sampai kapanpun,janji ya hehe!!",
+                "Adlryan Maulana Ahmad ❤️ Kansya Novelia Vega",
+                "I LOVE YOU Sayanggg"
+            ];
+            return messages[Math.floor(Math.random() * messages.length)];
+        }
+
+        function updateMessage() {
+            document.getElementById('message').innerText = getRandomLoveMessage();
+        }
+
+        setInterval(updateMessage, 5000);
+        updateMessage(); 
+
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = '${Math.random() * 100}%' ;
+            heart.style.animationDuration = '${Math.random() * 5 + 5}s';
+            document.getElementById('floatingHearts').appendChild(heart);
+
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+        setInterval(createFloatingHeart, 500);
+    </script>
+</body>
+</html>
